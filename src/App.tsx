@@ -12,8 +12,14 @@ import { ProductionDetailPage } from './pages/ProductionDetailPage'
 import { ResalesPage } from './pages/ResalesPage'
 import { NewResalePage } from './pages/NewResalePage'
 import { ResaleDetailPage } from './pages/ResaleDetailPage'
+import { MissingConfigPage } from './pages/MissingConfigPage'
+import { isSupabaseConfigured } from './lib/supabase'
 
 export default function App() {
+  if (!isSupabaseConfigured) {
+    return <MissingConfigPage />
+  }
+
   return (
     <AuthProvider>
       <BrowserRouter>

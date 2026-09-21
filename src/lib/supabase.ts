@@ -1,13 +1,17 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-const url = import.meta.env.VITE_SUPABASE_URL
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
 
-if (!url || !anonKey) {
-  throw new Error(
-    'VITE_SUPABASE_URL et VITE_SUPABASE_ANON_KEY manquent dans .env',
-  )
-}
+export const isSupabaseConfigured = Boolean(
+  url?.startsWith('http') && anonKey && anonKey.length > 20,
+)
 
-/** Client unique — les typages métier sont dans database.types + les APIs features. */
-export const supabase = createClient(url, anonKey)
+/**
+ * Client unique. Si les variables Vercel manquent, on n’explose pas au chargement
+ * (page blanche) — l’UI affiche un message de config.
+ */
+export const supabase: SupabaseClient = createClient(
+  url && url.startsWith('http') ? url : 'https://placeholder.supabase.co',
+  anonKey && anonKey.length > 20 ? anonKey : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder',
+)
