@@ -13,7 +13,7 @@
 - [ ] Dépendances vers l’intérieur (`src/pages` → features → services → lib)
 - [ ] Aucun import UI depuis `lib` / `services`
 - [ ] Calculs hors JSX ; pages = composition / routing
-- [ ] localStorage uniquement via `src/lib/storage`
+- [ ] Supabase uniquement via `src/lib/supabase` + APIs features
 - [ ] Motif répété 2+ fois factorisé
 - [ ] Pas de fichier / export / import mort
 - [ ] Pas de god file (service ≲ 300 lignes, UI ≲ 200)

@@ -4,16 +4,14 @@ Règles d’exécution pour l’agent Cursor. Qualité : `docs/quality-checklist
 
 ## Mission
 
-Calculateur de coût et de prix, générique, utilisable au téléphone. Trois parcours : matières, productions/reventes, prix. Données sur l’appareil.
+Calculateur de coût et de prix, générique, utilisable au téléphone. Trois parcours : matières, productions/reventes, prix. Données dans Supabase.
 
 ## Stack (figée)
 
 - App unique : **Vite + React + TypeScript + Tailwind**
 - **pnpm**, tests **Vitest**
-- Persistance : **localStorage** via `src/lib/storage` uniquement
-- Pas de backend / auth / Next.js en v1
-
-Snippets TS strict : `docs/snippets/` (à fusionner au scaffold).
+- Persistance : **Supabase** via `src/lib/supabase` (+ Auth email)
+- Pas de Next.js / Prisma / paiement en v1
 
 ## Rythme
 
@@ -37,7 +35,7 @@ Les calculs sont des fonctions pures testées. L’UI compose et affiche.
 - Découper ~300 lignes (service) / ~200 (UI).
 - Tests min sur chaque module de calcul touché.
 - Mobile-first, cibles ≥ 44px, totaux bien visibles.
-- Zéro secret dans git (peu probable en v1 locale ; rester strict).
+- Secrets uniquement dans `.env` (gitignoré).
 
 ## Git
 

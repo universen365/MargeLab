@@ -1,5 +1,5 @@
 ---
-description: Stack figée — Vite React TS Tailwind pnpm, app unique
+description: Stack figée — Vite React TS Tailwind pnpm + Supabase
 alwaysApply: true
 ---
 
@@ -9,7 +9,8 @@ alwaysApply: true
 - Vite + React + TypeScript + Tailwind CSS.
 - Package manager : **pnpm**.
 - Tests : **Vitest**.
-- Persistance v1 : **localStorage** derrière un module `lib/storage` (pas d’appels dispersés). Pas de backend, pas de compte.
-- Routing : pages dans `src/` (pas Next.js App Router).
+- Persistance : **Supabase** (Postgres + Auth) via `src/lib/supabase` uniquement.
+- Auth email/mot de passe (RLS par `user_id`).
+- Routing : `react-router-dom`, pages dans `src/pages`.
 
-Ne pas ajouter Next.js, Prisma, auth, paiement, API cloud « au cas où ».
+Ne pas ajouter Next.js, Prisma, paiement, autre cloud « au cas où ».
