@@ -1,0 +1,17 @@
+---
+description: Couches src/ — métier pur, storage isolé
+alwaysApply: true
+---
+
+# Architecture
+
+Dépendances **vers l’intérieur seulement** :
+
+`src/pages` (UI) → `src/features` → `src/services` → `src/lib`
+
+- INTERDIT : `lib` ou `services` importent pages / composants visuels.
+- Calculs (coût de lot, coût unitaire, prix suggéré) = fonctions pures dans `services` ou `lib`. Les pages affichent, elles ne recalculent pas à la main.
+- Persistance = uniquement `lib/storage` (localStorage). Pas de fetch métier en v1.
+- Factoriser un motif dès la 2ᵉ occurrence.
+- Zéro code mort. Découper si service ≳ 300 lignes ou fichier UI ≳ 200.
+- Pas de barrel qui réexporte tout le projet.

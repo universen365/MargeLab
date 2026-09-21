@@ -1,0 +1,15 @@
+---
+description: Stack figée — Vite React TS Tailwind pnpm, app unique
+alwaysApply: true
+---
+
+# Stack
+
+- App unique (pas de monorepo).
+- Vite + React + TypeScript + Tailwind CSS.
+- Package manager : **pnpm**.
+- Tests : **Vitest**.
+- Persistance v1 : **localStorage** derrière un module `lib/storage` (pas d’appels dispersés). Pas de backend, pas de compte.
+- Routing : pages dans `src/` (pas Next.js App Router).
+
+Ne pas ajouter Next.js, Prisma, auth, paiement, API cloud « au cas où ».

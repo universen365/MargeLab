@@ -1,0 +1,16 @@
+---
+description: Périmètre MVP — Cahier des charges, 3 parcours
+alwaysApply: true
+---
+
+# Périmètre produit
+
+Source de vérité : `Cahier des charges.md` (v2 MVP).
+
+Trois parcours seulement : **matières** → **productions / reventes** → **prix d’une unité**.
+
+- Ne pas inventer de features hors CDC.
+- Hors v1 : ventes quotidiennes, packs, clients, livraisons, dashboard CA, compte utilisateur, exports, sync cloud.
+- Vocabulaire UI : matières, productions, reventes, charges, unités, bénéfice. Pas de jargon comptable.
+- App **générique** (tout petit business), pas une marque.
+- En cas de doute : une question, pas une feature « au cas où ».

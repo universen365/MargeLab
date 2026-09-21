@@ -1,0 +1,16 @@
+---
+description: Rythme d’exécution agent — une slice, puis STOP
+alwaysApply: true
+---
+
+# Discipline agent
+
+- Une seule slice par tour. Pas de feature bonus, pas de « tant qu’on y est ».
+- Finir → lister fichiers + pourquoi → STOP. Attendre validation / commit.
+- Ne pas lancer lint, typecheck, test ou build sauf demande explicite.
+- Ne pas commit / push / force-push sauf demande explicite.
+- Stack figée dans `AGENTS.md` / `stack.mdc`. Ne pas en changer ni inventer de feature hors `Cahier des charges.md`.
+- Ne pas migrer ni refactorer en masse le code existant hors slice.
+- Entre deux options : la plus maintenable, pas la plus rapide.
+- En fin de slice : remplir `docs/slice-end-template.md` (Done / Not done / Limitations + gates).
+- Donner les commandes Gates et Git prêtes à copier, une par ligne.

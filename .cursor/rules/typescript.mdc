@@ -1,0 +1,25 @@
+---
+description: TypeScript strict, nommage, interdits
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript
+
+- Mode strict. Corriger les erreurs IDE dans la slice touchée.
+- Pas de `any` sauf justification en une ligne au-dessus.
+- Pas de `@ts-ignore` / `eslint-disable` sans justification courte.
+- Noms explicites (intention, pas d’abréviations opaques).
+- Commentaires seulement si l’intention n’est pas évidente.
+- Préférer fonctions pures (entrées → sorties) pour le métier.
+
+```ts
+// ❌
+const x: any = calc(input as any);
+
+// ✅
+function unitCost(realLotCost: number, quantity: number): number {
+  if (quantity <= 0) throw new Error("quantity must be > 0");
+  return realLotCost / quantity;
+}
+```

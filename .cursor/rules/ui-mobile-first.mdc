@@ -1,0 +1,15 @@
+---
+description: UI 3 parcours, téléphone d’abord
+globs: "**/*.{tsx,jsx,css,scss}"
+alwaysApply: false
+---
+
+# UI mobile-first
+
+- Une colonne, lisible au pouce. Desktop = plus d’espace, pas un autre produit.
+- Zones tactiles ≥ 44px.
+- Navigation : 3 parcours → **barre du bas** (Matières, Productions, Reventes) ou liste d’accueil + boutons. Pas un menu hamburger de dashboard.
+- Totaux (coût du lot, coût d’une unité, prix suggéré) toujours visibles, en grand.
+- Couleurs / rayons = tokens du projet uniquement.
+- Labels liés aux champs, focus visible, contraste lisible.
+- Pas de calcul métier inline dans le JSX.
