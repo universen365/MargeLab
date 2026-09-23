@@ -144,7 +144,7 @@ export function LoginPage() {
             required
             minLength={3}
             maxLength={32}
-            placeholder="ex. amie"
+            placeholder="ex. dijaGlamour123..."
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
