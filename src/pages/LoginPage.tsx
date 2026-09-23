@@ -82,24 +82,25 @@ export function LoginPage() {
       })
       if (err) throw err
 
-      if (data.session) {
-        navigate('/matieres')
-        return
-      }
-
       const identities = data.user?.identities ?? []
       if (data.user && identities.length === 0) {
-        setError('Cet identifiant est déjà pris. Connecte-toi ou choisis-en un autre.')
+        setError(
+          'Cet identifiant est déjà pris. Connecte-toi ou choisis-en un autre.',
+        )
         setMode('login')
         return
       }
 
-      // Confirm email encore ON → pas de session
-      setSuccess(null)
-      setError(
-        'Compte créé mais non activé. Dans Supabase : Authentication → Providers → Email → désactive « Confirm email », puis reconnecte-toi.',
-      )
+      // Pas d’accès auto : on déconnecte et on demande une vraie connexion
+      if (data.session) {
+        await supabase.auth.signOut()
+      }
+
+      setPassword('')
+      setConfirmPassword('')
       setMode('login')
+      setSuccess('Compte créé avec succès. Connecte-toi avec ton identifiant et ton mot de passe.')
+      return
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur')
     } finally {
