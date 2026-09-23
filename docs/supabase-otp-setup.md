@@ -1,60 +1,40 @@
-# OTP inscription — réglages Supabase (MargeLab)
+# Confirmation par lien email (MargeLab)
 
-## 1. Confirmation email activée
+L’app utilise le **lien de confirmation** (pas d’OTP).
 
-**Authentication → Providers → Email**
-
-- Email activé
-- **Confirm email** = ON
-
-## 2. Template du mail (pour reconnaître MargeLab)
+## Template Supabase
 
 **Authentication → Emails → Templates → Confirm sign up**
 
-### Subject (objet)
-
+**Objet :**
 ```text
-MargeLab — ton code de confirmation
+MargeLab — confirme ton compte
 ```
 
-### Body (corps) — colle ceci
-
+**Corps (exemple) :**
 ```html
 <h2>Bienvenue sur MargeLab</h2>
-<p>Voici ton code à 6 chiffres pour confirmer ton compte :</p>
-<p style="font-size: 28px; font-weight: bold; letter-spacing: 6px;">{{ .Token }}</p>
-<p>Ce code expire bientôt. Si tu n’as pas demandé de compte MargeLab, ignore ce mail.</p>
+<p>Clique sur le bouton pour confirmer ton compte :</p>
+<p><a href="{{ .ConfirmationURL }}">Confirmer mon compte</a></p>
+<p>Si tu n’as pas demandé de compte MargeLab, ignore ce mail.</p>
 ```
 
-Important : utilise **`{{ .Token }}`** (le code), **pas** seulement le lien `{{ .ConfirmationURL }}`.
+Utilise `{{ .ConfirmationURL }}` (lien), pas le code OTP.
 
-Puis **Save**.
-
-> Si tu ne peux pas modifier le template (Free + email intégré) : branche un **SMTP custom** (Resend) dans **Authentication → SMTP Settings**, puis réessaie. Avec SMTP custom, tu peux customiser librement.
-
-## 3. URLs (toujours utiles)
+## URLs
 
 **Authentication → URL Configuration**
 
-- **Site URL** : `https://TON-PROJET.vercel.app`
-- **Redirect URLs** : `https://TON-PROJET.vercel.app/**` et `http://localhost:5173/**`
+- Site URL : `https://TON-PROJET.vercel.app`
+- Redirect URLs :
+  - `https://TON-PROJET.vercel.app/**`
+  - `https://TON-PROJET.vercel.app/login?confirmed=1`
+  - `http://localhost:5173/**`
+  - `http://localhost:5173/login?confirmed=1`
 
-## 4. Expéditeur (reconnaître le mail)
+## Important — mails
 
-Idéal avec Resend / SMTP :
+Sans SMTP custom, Supabase n’envoie qu’aux **membres de l’équipe** du projet.  
+Pour les vrais utilisateurs → brancher Resend (ou autre SMTP).
 
-- From name : `MargeLab`
-- From email : ex. `noreply@tondomaine.com` (domaine vérifié chez Resend)
-
-Sans SMTP custom, l’expéditeur reste générique Supabase → plus souvent en spam, moins reconnaissable.
-
-## 5. Limites
-
-Avec email intégré Supabase : ~**2 mails/heure** projet.  
-Avec SMTP custom : plafond beaucoup plus haut (réglable dans **Rate Limits**).
-
-## Parcours app
-
-1. Créer un compte  
-2. Écran « Code de confirmation »  
-3. Saisie du code à 6 chiffres → message vert → connexion
+Après le clic dans le mail → page Connexion + message vert de succès.
